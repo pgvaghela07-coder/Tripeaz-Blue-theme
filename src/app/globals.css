@@ -1,0 +1,1025 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Remove loading delays - ensure initial content visibility */
+body > div[id="__next"] > div {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Force light mode - disable dark mode */
+html {
+  color-scheme: light !important;
+}
+
+/* Force all elements to use light mode styles */
+* {
+  color-scheme: light !important;
+}
+
+/* Override any dark mode styles - ensure everything looks like light mode */
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: light !important;
+  }
+  
+  body {
+    background: white !important;
+    color: #000000 !important;
+  }
+  
+  /* Override dark mode classes that might still apply */
+  [class*="dark:bg-gray-800"],
+  .dark\:bg-gray-800 {
+    background-color: white !important;
+  }
+  
+  [class*="dark:text-white"],
+  .dark\:text-white {
+    color: #000000 !important;
+  }
+  
+  [class*="dark:text-gray-200"],
+  .dark\:text-gray-200 {
+    color: #000000 !important;
+  }
+  
+  [class*="dark:text-gray-300"],
+  .dark\:text-gray-300 {
+    color: #374151 !important;
+  }
+  
+  [class*="dark:text-black"],
+  .dark\:text-black {
+    color: #000000 !important;
+  }
+  
+  [class*="dark:border-gray-600"],
+  .dark\:border-gray-600 {
+    border-color: #d1d5db !important;
+  }
+  
+  [class*="dark:hover:bg-gray-700"],
+  .dark\:hover\:bg-gray-700 {
+    background-color: #dbeafe !important; /* blue-100 equivalent */
+  }
+  
+  [class*="dark:bg-gray-700"],
+  .dark\:bg-gray-700 {
+    background-color: #e5e7eb !important; /* Light gray instead of dark */
+  }
+  
+  [class*="dark:placeholder-gray-400"]::placeholder,
+  .dark\:placeholder-gray-400::placeholder {
+    color: #6b7280 !important;
+  }
+  
+  /* Admin pages specific overrides */
+  table.dark\:bg-gray-800,
+  table[class*="dark:bg-gray-800"] {
+    background-color: white !important;
+  }
+  
+  thead.dark\:bg-gray-700,
+  thead[class*="dark:bg-gray-700"] {
+    background-color: #e5e7eb !important; /* Light gray header */
+  }
+  
+  th.dark\:text-gray-200,
+  th[class*="dark:text-gray-200"] {
+    color: #1f2937 !important; /* Dark text */
+  }
+  
+  td.dark\:text-gray-200,
+  td[class*="dark:text-gray-200"] {
+    color: #1f2937 !important;
+  }
+  
+  tr.dark\:hover\:bg-gray-700,
+  tr[class*="dark:hover:bg-gray-700"]:hover {
+    background-color: #f9fafb !important; /* Light hover */
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container input {
+  width: 100%;
+  height: 42px; /* Match other inputs */
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Footer Red Scrollbar */
+.footer-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #ef4444 #1f2937;
+}
+
+.footer-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.footer-scrollbar::-webkit-scrollbar-track {
+  background: #1f2937;
+  border-radius: 10px;
+}
+
+.footer-scrollbar::-webkit-scrollbar-thumb {
+  background: #ef4444;
+  border-radius: 10px;
+}
+
+.footer-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #dc2626;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* Gradient backgrounds */
+.gradient-orange {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.gradient-blue-light {
+  background: linear-gradient(135deg, #bfdbfe 0%, #60a5fa 100%);
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s infinite;
+}
+
+/* Marquee animation */
+
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 18s linear infinite;
+  will-change: transform;
+}
+
+/* Optimized for mobile - all 10 images in one pass at good speed */
+@media (max-width: 768px) {
+  .animate-marquee {
+    animation: marquee 5s linear infinite;
+    /* will-change: transform; */
+  }
+}
+
+/* Hide scrollbar but allow scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* CKEditor content styling */
+.ckeditor-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.ckeditor-content th,
+.ckeditor-content td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ckeditor-content th {
+  background-color: #f8f8f8;
+  font-weight: 600;
+}
+
+.ckeditor-content tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.ckeditor-content tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+/* Button styles */
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+}
+
+.btn-secondary {
+  @apply bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+}
+
+/* Form styles */
+.form-input {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300;
+}
+
+.form-select {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2;
+}
+
+/* Text styles */
+.text-gradient {
+  @apply bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent;
+}
+
+/* CKEditor Content Styles */
+.prose,
+.blog-content {
+  /* Ensure container handles overflow */
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  
+  /* Centered Images */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Images with text-align: center or margin: auto */
+  img[style*="text-align: center"],
+  img[style*="margin: auto"],
+  img[style*="margin-left: auto"],
+  img[style*="margin-right: auto"] {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
+  }
+  
+  /* Images inside centered paragraphs or divs */
+  p[style*="text-align: center"] img,
+  div[style*="text-align: center"] img,
+  p[style*="text-align:center"] img,
+  div[style*="text-align:center"] img {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
+  }
+  
+  /* Handle CKEditor's image figure wrapper - Center aligned */
+  figure.image.image-style-align-center,
+  figure.image[class*="align-center"],
+  figure.image[class*="alignCenter"] {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    float: none !important;
+    text-align: center !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+  }
+  
+  /* Center the image inside centered figure */
+  figure.image.image-style-align-center img,
+  figure.image[class*="align-center"] img,
+  figure.image[class*="alignCenter"] img {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+  }
+  
+  /* Handle CKEditor's image figure wrapper - Left aligned */
+  figure.image.image-style-align-left {
+    float: left !important;
+    margin-right: 1.5em !important;
+    margin-left: 0 !important;
+    display: block !important;
+  }
+  
+  /* Handle CKEditor's image figure wrapper - Right aligned */
+  figure.image.image-style-align-right {
+    float: right !important;
+    margin-left: 1.5em !important;
+    margin-right: 0 !important;
+    display: block !important;
+  }
+  
+  /* Handle CKEditor's image figure wrapper - Side (default right) */
+  figure.image.image-style-side {
+    float: right !important;
+    margin-left: 1.5em !important;
+    max-width: 50% !important;
+    display: block !important;
+  }
+  
+  /* Handle CKEditor's image figure wrapper - Full width/block */
+  figure.image.image-style-block,
+  figure.image.image-style-full {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    float: none !important;
+    width: 100% !important;
+  }
+  
+  /* Default figure.image (should be centered if no alignment class) */
+  figure.image:not(.image-style-align-left):not(.image-style-align-right):not(.image-style-side):not(.image-style-block):not(.image-style-full) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    float: none !important;
+    text-align: center !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+  }
+  
+  /* Ensure images inside default figures are centered */
+  figure.image:not(.image-style-align-left):not(.image-style-align-right):not(.image-style-side):not(.image-style-block):not(.image-style-full) img {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+  }
+  
+  /* Handle images with alignment classes */
+  img.image-style-align-center,
+  .image-style-align-center img,
+  figure.image.image-style-align-center img,
+  figure.image[class*="center"] img,
+  figure[class*="center"] img {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+  }
+  
+  /* Additional center alignment rules for any center-related classes */
+  figure[class*="center"],
+  figure[class*="Center"],
+  .align-center,
+  .alignCenter,
+  [style*="text-align: center"] figure,
+  [style*="text-align:center"] figure {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    float: none !important;
+    text-align: center !important;
+  }
+  
+  /* Table Styles */
+  /* Wrap tables in a scrollable container */
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    margin: 1.5rem 0;
+  }
+  
+
+  .table{
+    display: block !important;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: relative !important;
+    display: block !important;
+    scrollbar-width: auto !important;
+    scrollbar-color: #3b82f6 #e5e7eb !important;
+    -ms-overflow-style: scrollbar !important;
+  }
+
+  
+  table thead {
+    background-color: #f9fafb;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #d1d5db !important;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  
+  table th {
+    font-weight: 600;
+    background-color: #f3f4f6 !important;
+    border-bottom: 2px solid #9ca3af !important;
+    color: #1f2937;
+  }
+  
+  table td {
+    background-color: #ffffff;
+  }
+  
+  table tr:nth-child(even) td {
+    background-color: #f9fafb;
+  }
+  
+  table tr:hover td {
+    background-color: #f3f4f6;
+  }
+  
+  /* Ensure table borders are always visible */
+  table[style*="border"] {
+    border: 2px solid #d1d5db !important;
+  }
+  
+  table th[style*="border"],
+  table td[style*="border"] {
+    border: 1px solid #d1d5db !important;
+  }
+  
+  /* Desktop: prevent horizontal scroll */
+  @media (min-width: 769px) {
+    .prose,
+    .blog-content {
+      overflow-x: hidden;
+    }
+  }
+  
+  /* Table scroll wrapper - for dynamically wrapped tables */
+  .table-scroll-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin: 1.5rem 0 !important;
+    position: relative !important;
+    display: block !important;
+    /* Force scrollbar to always be visible */
+    scrollbar-width: auto !important;
+    scrollbar-color: #3b82f6 #e5e7eb !important;
+    -ms-overflow-style: scrollbar !important;
+    /* Visual indicator for scrollable area */
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    padding: 12px 0 !important;
+    background: #fafafa !important;
+  }
+  
+  /* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) - Always visible */
+  .table-scroll-wrapper::-webkit-scrollbar {
+    height: 12px !important;
+    display: block !important;
+    -webkit-appearance: none !important;
+  }
+  
+  .table-scroll-wrapper::-webkit-scrollbar-track {
+    background: #e5e7eb !important;
+    border-radius: 6px !important;
+    border: 1px solid #d1d5db !important;
+  }
+  
+  .table-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #3b82f6 !important;
+    border-radius: 6px !important;
+    border: 2px solid #e5e7eb !important;
+    min-width: 50px !important;
+  }
+  
+  .table-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #ea580c !important;
+  }
+  
+  .table-scroll-wrapper table {
+    margin: 0 !important;
+    min-width: 600px !important;
+    width: auto !important;
+    max-width: none !important;
+    display: table !important;
+  }
+  
+  /* Responsive tables - Mobile */
+  @media (max-width: 768px) {
+    /* Prevent page from scrolling horizontally */
+    body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    
+    /* Make blog content container allow horizontal scroll for tables */
+    .prose,
+    .blog-content {
+      overflow-x: visible;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+    }
+    
+    /* Table wrapper for mobile scrolling - break out of padding */
+    .table-wrapper,
+    .table-scroll-wrapper {
+      width: calc(100% + 2rem);
+      max-width: calc(100% + 2rem);
+      margin-left: -1rem;
+      margin-right: -1rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding: 12px 1rem;
+      position: relative;
+      box-sizing: content-box;
+      /* Force scrollbar to always be visible on mobile */
+      scrollbar-width: auto;
+      scrollbar-color: #f97316 #e5e7eb;
+      /* Visual indicator for scrollable area */
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+    
+    /* Custom scrollbar for webkit browsers on mobile - Always visible */
+    .table-wrapper::-webkit-scrollbar,
+    .table-scroll-wrapper::-webkit-scrollbar {
+      height: 14px !important;
+      display: block !important;
+      -webkit-appearance: none;
+    }
+    
+    .table-wrapper::-webkit-scrollbar-track,
+    .table-scroll-wrapper::-webkit-scrollbar-track {
+      background: #e5e7eb !important;
+      border-radius: 7px !important;
+      border: 1px solid #d1d5db !important;
+    }
+    
+    .table-wrapper::-webkit-scrollbar-thumb,
+    .table-scroll-wrapper::-webkit-scrollbar-thumb {
+      background: #3b82f6 !important;
+      border-radius: 7px !important;
+      border: 2px solid #e5e7eb !important;
+      min-width: 50px !important;
+    }
+    
+    .table-wrapper::-webkit-scrollbar-thumb:hover,
+    .table-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+      background: #2563eb !important;
+    }
+    
+    /* Force scrollbar to always show */
+    .table-wrapper,
+    .table-scroll-wrapper {
+      scrollbar-width: auto !important;
+      -ms-overflow-style: scrollbar !important;
+    }
+    
+    /* Tables inside wrapper - ensure proper scrolling */
+    .table-scroll-wrapper {
+      display: block !important;
+      width: calc(100% + 2rem) !important;
+      max-width: calc(100% + 2rem) !important;
+      margin-left: -1rem !important;
+      margin-right: -1rem !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      -webkit-overflow-scrolling: touch !important;
+      margin-top: 1.5rem !important;
+      margin-bottom: 1.5rem !important;
+      padding: 12px 1rem !important;
+      position: relative !important;
+      /* Force scrollbar visibility */
+      scrollbar-width: auto !important;
+      scrollbar-color: #3b82f6 #e5e7eb !important;
+      /* Visual indicator for scrollable area */
+      border: 1px solid #e5e7eb !important;
+      border-radius: 8px !important;
+      background: #fafafa !important;
+    }
+    
+    /* Ensure scrollbar is visible on mobile - Enhanced styling */
+    .table-scroll-wrapper::-webkit-scrollbar {
+      height: 14px !important;
+      display: block !important;
+      -webkit-appearance: none !important;
+    }
+    
+    .table-scroll-wrapper::-webkit-scrollbar-track {
+      background: #e5e7eb !important;
+      border-radius: 7px !important;
+      border: 1px solid #d1d5db !important;
+    }
+    
+    .table-scroll-wrapper::-webkit-scrollbar-thumb {
+      background: #3b82f6 !important;
+      border-radius: 7px !important;
+      border: 2px solid #e5e7eb !important;
+      min-width: 50px !important;
+    }
+    
+    .table-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+      background: #2563eb !important;
+    }
+    
+    /* Force scrollbar to always show */
+    .table-scroll-wrapper {
+      scrollbar-width: auto !important;
+      -ms-overflow-style: scrollbar !important;
+    }
+    
+    .table-scroll-wrapper table {
+      width: auto !important;
+      min-width: 600px !important;
+      max-width: none !important;
+      display: table !important;
+      margin: 0 !important;
+    }
+    
+    /* Fallback for unwrapped tables */
+    .prose table:not(.table-scroll-wrapper table),
+    .blog-content table:not(.table-scroll-wrapper table) {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      margin: 1.5rem 0;
+      scrollbar-width: thin;
+      scrollbar-color: #3b82f6 #f1f1f1;
+    }
+    
+    .prose table:not(.table-scroll-wrapper table)::-webkit-scrollbar,
+    .blog-content table:not(.table-scroll-wrapper table)::-webkit-scrollbar {
+      height: 14px;
+      display: block;
+      -webkit-appearance: none;
+    }
+    
+    .prose table:not(.table-scroll-wrapper table)::-webkit-scrollbar-track,
+    .blog-content table:not(.table-scroll-wrapper table)::-webkit-scrollbar-track {
+      background: #e5e7eb;
+      border-radius: 7px;
+      border: 1px solid #d1d5db;
+    }
+    
+    .prose table:not(.table-scroll-wrapper table)::-webkit-scrollbar-thumb,
+    .blog-content table:not(.table-scroll-wrapper table)::-webkit-scrollbar-thumb {
+      background: #3b82f6;
+      border-radius: 7px;
+      border: 2px solid #e5e7eb;
+      min-width: 50px;
+    }
+    
+    .prose table:not(.table-scroll-wrapper table)::-webkit-scrollbar-thumb:hover,
+    .blog-content table:not(.table-scroll-wrapper table)::-webkit-scrollbar-thumb:hover {
+      background: #2563eb;
+    }
+    
+    .prose table:not(.table-scroll-wrapper table) thead,
+    .prose table:not(.table-scroll-wrapper table) tbody,
+    .prose table:not(.table-scroll-wrapper table) tr,
+    .blog-content table:not(.table-scroll-wrapper table) thead,
+    .blog-content table:not(.table-scroll-wrapper table) tbody,
+    .blog-content table:not(.table-scroll-wrapper table) tr {
+      display: table;
+      width: auto;
+      min-width: 600px;
+    }
+    
+    table th,
+    table td {
+      min-width: 120px;
+      padding: 0.5rem 0.75rem;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+  }
+  
+  /* Blockquotes */
+  blockquote {
+    border-left: 4px solid #3b82f6;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #6b7280;
+  }
+  
+  /* Lists */
+  ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+  
+  li {
+    margin: 0.5rem 0;
+  }
+  
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  h1 {
+    font-size: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.875rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  /* Paragraphs */
+  p {
+    margin: 1rem 0;
+    line-height: 1.75;
+  }
+  
+  /* Links */
+  a {
+    color: #3b82f6;
+    text-decoration: underline;
+  }
+  
+  a:hover {
+    color: #2563eb;
+  }
+  
+  /* Code blocks */
+  pre {
+    background-color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  
+  code {
+    background-color: #f3f4f6;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+  
+  pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+  
+  /* Horizontal rules */
+  hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 2rem 0;
+  }
+}
+
+/* CKEditor Wrapper Styles */
+.ckeditor-wrapper {
+  min-height: 300px;
+  background-color: white !important; /* Force white background */
+}
+
+.ckeditor-wrapper .ck-editor {
+  min-height: 300px;
+}
+
+.ckeditor-wrapper .ck-editor__editable {
+  min-height: 300px;
+  background-color: white !important; /* Force white background */
+  color: #000000 !important; /* Force black text */
+}
+
+/* CKEditor - Force Light Mode Styles (Dark Mode Disabled) */
+.ckeditor-wrapper .ck-editor__editable {
+  background-color: #ffffff !important; /* Always white background */
+  color: #000000 !important; /* Always black text */
+}
+
+.ckeditor-wrapper .ck-editor__editable.ck-focused {
+  border-color: #3b82f6 !important; /* Blue focus border */
+}
+
+.ckeditor-wrapper .ck-toolbar {
+  background-color: #f9fafb !important; /* Light gray toolbar */
+  border-color: #e5e7eb !important; /* Light border */
+}
+
+.ckeditor-wrapper .ck-toolbar__separator {
+  background-color: #e5e7eb !important;
+}
+
+.ckeditor-wrapper .ck-button {
+  color: #1f2937 !important; /* Dark text on light background */
+}
+
+.ckeditor-wrapper .ck-button:hover:not(.ck-disabled) {
+  background-color: #f3f4f6 !important; /* Light gray hover */
+}
+
+.ckeditor-wrapper .ck-button.ck-on {
+  background-color: #f3f4f6 !important;
+}
+
+.ckeditor-wrapper .ck-dropdown__panel {
+  background-color: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+
+.ckeditor-wrapper .ck-list__item {
+  color: #1f2937 !important;
+}
+
+.ckeditor-wrapper .ck-list__item:hover {
+  background-color: #f3f4f6 !important;
+}
+
+/* Override dark mode for CKEditor */
+@media (prefers-color-scheme: dark) {
+  .ckeditor-wrapper .ck-editor__editable {
+    background-color: #ffffff !important; /* Force white */
+    color: #000000 !important; /* Force black text */
+  }
+  
+  .ckeditor-wrapper .ck-toolbar {
+    background-color: #f9fafb !important; /* Force light toolbar */
+    border-color: #e5e7eb !important;
+  }
+  
+  .ckeditor-wrapper .ck-button {
+    color: #1f2937 !important;
+  }
+  
+  .ckeditor-wrapper .ck-dropdown__panel {
+    background-color: #ffffff !important;
+  }
+  
+  .ckeditor-wrapper .ck-list__item {
+    color: #1f2937 !important;
+  }
+}
+
+/* CKEditor Image Alignment Styles - For Editor View */
+.ck-content figure.image {
+  display: table;
+  clear: both;
+  text-align: center;
+  margin: 0.9em auto;
+  min-width: 50px;
+}
+
+.ck-content figure.image.image-style-align-left {
+  float: left !important;
+  margin-right: 1.5em !important;
+  margin-left: 0 !important;
+  display: table !important;
+}
+
+.ck-content figure.image.image-style-align-right {
+  float: right !important;
+  margin-left: 1.5em !important;
+  margin-right: 0 !important;
+  display: table !important;
+}
+
+.ck-content figure.image.image-style-align-center {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
+  display: table !important;
+  text-align: center !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+}
+
+.ck-content figure.image.image-style-align-center img {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+}
+
+.ck-content figure.image.image-style-side {
+  float: right !important;
+  margin-left: 1.5em !important;
+  max-width: 50% !important;
+  display: table !important;
+}
+
+.ck-content figure.image.image-style-block,
+.ck-content figure.image.image-style-full {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
+  display: table !important;
+  width: 100% !important;
+}

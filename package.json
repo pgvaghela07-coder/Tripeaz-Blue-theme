@@ -1,0 +1,52 @@
+{
+  "name": "gujarat-taxi",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-basic-styles": "^47.2.0",
+    "@ckeditor/ckeditor5-build-classic": "^39.0.2",
+    "@ckeditor/ckeditor5-editor-classic": "^47.2.0",
+    "@ckeditor/ckeditor5-essentials": "^47.2.0",
+    "@ckeditor/ckeditor5-image": "^47.2.0",
+    "@ckeditor/ckeditor5-paragraph": "^47.2.0",
+    "@ckeditor/ckeditor5-react": "^11.0.0",
+    "@ckeditor/ckeditor5-undo": "^47.2.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "animejs": "^3.2.1",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.7.0",
+    "date-fns": "^4.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "lucide-react": "^0.294.0",
+    "mongoose": "^8.19.0",
+    "next": "^14.2.33",
+    "nodemailer": "^7.0.11",
+    "react": "^18",
+    "react-datepicker": "^8.10.0",
+    "react-dom": "^18",
+    "react-toastify": "^11.0.5",
+    "sa": "^0.2.50",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@types/animejs": "^3.1.13",
+    "@types/node": "^20",
+    "@types/nodemailer": "^6.4.14",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "baseline-browser-mapping": "^2.8.32",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}

@@ -48,7 +48,7 @@ export default function Navigation() {
     //         </div>
     //       </div>
 
-         
+
 
     //       {/* Contact Info & CTA */}
     //       <div className="hidden lg:flex items-center space-x-4">
@@ -61,7 +61,7 @@ export default function Navigation() {
     //             <Mail className="w-4 h-4" />
     //             <span>info@gujarat.taxi</span>
     //           </div>
-              
+
     //         </div>
     //         <button onClick={openModal} className="btn-primary">Book Now</button>
     //       </div>
@@ -120,16 +120,13 @@ export default function Navigation() {
     //   </div>
     // </nav>
 
-    <div className="flex items-center space-x-2 justify-center py-3 bg-gradient-to-br  from-blue-50  to-blue-50">
-            <div>
-              <Image src={assest.logo} alt="" className="w-28 h-24 object-cover"/>
-            </div>
-            <div className="">
-              <h1 className="leading-7 text-4xl font-semibold text-[#98561f]" style={{fontFamily:"serif"}}>Tripeaz</h1>
-              <p className="text-xl text-[#98561f] font-semibold "style={{fontFamily:"serif"}}>
-                Khushboo Gujarat Ki
-              </p>
-            </div>
-          </div>
+    <div className="flex flex-col items-center justify-center py-3 bg-gradient-to-br  from-blue-50  to-blue-50">
+      <div>
+        <Image src={assest.logo} alt="" className="w-96 h-24 object-cover" />
+      </div>
+        {/* <p className="text-xl text-[#3579F3] font-semibold -mt-3" style={{ fontFamily: "serif" }}>
+          Travel Made Easy
+        </p> */}
+    </div>
   );
 }

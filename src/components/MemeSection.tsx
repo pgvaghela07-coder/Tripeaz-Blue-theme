@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import anime from "animejs";
-import { Car, Fuel, Smile, TrendingUp } from "lucide-react";
+import { Car, Fuel, Smile, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { useBookingModal } from "@/contexts/BookingModalContext";
 import { assest } from "@/assest/assest";
 import Image from "next/image";
@@ -14,8 +14,8 @@ export default function MemeSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const memeImages = [
-    { src: assest.img1, alt: "Meme 1" },
-    { src: assest.img2, alt: "Meme 2" },
+    { src: assest.meme1, alt: "Meme 1" },
+    { src: assest.meme2, alt: "Meme 2" },
     { src: assest.meme3, alt: "Meme 3" },
   ];
 
@@ -51,14 +51,15 @@ export default function MemeSection() {
       // Set immediate visibility - no delay
       containerRef.current.style.opacity = '1';
     }
+  }, []);
 
-    // Auto-rotate images every 3 seconds
-    const imageInterval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % memeImages.length);
-    }, 3000);
+  const goToPrevious = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? memeImages.length - 1 : prev - 1));
+  };
 
-    return () => clearInterval(imageInterval);
-  }, [memeImages.length]);
+  const goToNext = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % memeImages.length);
+  };
 
 
   return (
@@ -68,16 +69,34 @@ export default function MemeSection() {
         className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="text-center mb-6 sm:mb-8 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">
+          <h2 className="text-2xl max-md:mt-5 sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">
             Travel Vibes 🚗✨
           </h2>
 
         </div>
 
         {/* Meme Banner */}
-        <div className="relative ">
+        <div className="relative  ">
           <div className="relative z-10 overflow-hidden rounded-xl  ">
-            <div className="relative h-[300px] sm:h-[300px] md:h-[400px] lg:h-[500px]  py-2 sm:py-4 md:py-7 overflow-hidden rounded-xl">
+            <div className="relative h-[280px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-xl">
+              {/* Left Arrow - Mobile: on image, Desktop: on side */}
+              <button
+                onClick={goToPrevious}
+                className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white text-blue-600 hover:text-blue-700 rounded-full p-2 sm:p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+
+              {/* Right Arrow - Mobile: on image, Desktop: on side */}
+              <button
+                onClick={goToNext}
+                className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-30 bg-white/90 hover:bg-white text-blue-600 hover:text-blue-700 rounded-full p-2 sm:p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+
               <div
                 className="flex h-full transition-transform duration-500 ease-in-out"
                 style={{
@@ -87,19 +106,22 @@ export default function MemeSection() {
                 {memeImages.map((image, index) => (
                   <div
                     key={index}
-                    className="min-w-full w-full h-full flex-shrink-0 relative flex items-center justify-center px-2"
+                    className="min-w-full w-full h-full flex-shrink-0 relative flex items-center justify-center"
                   >
-                    <div className="relative w-auto max-w-full h-full max-h-full flex items-center justify-center">
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        className="max-w-full max-h-full w-auto h-auto object-contain rounded-xl border-2 border-blue-500"
-                        style={{ borderRadius: '0.75rem' }}
-                        width={1200}
-                        height={600}
-                        priority={index === 0}
-                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 90vw, 1200px"
-                      />
+                    <div className="relative w-full h-full flex items-center justify-center p-4">
+                      <div className="rounded-xl border-2 border-blue-500 shadow-xl overflow-hidden inline-block max-w-full max-h-full">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={typeof image.src === 'string' ? image.src : image.src.src}
+                          alt={image.alt}
+                          className="rounded-xl block max-w-full max-h-full w-auto h-auto object-contain"
+                          style={{ 
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                            display: 'block'
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 ))}

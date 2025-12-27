@@ -1,26 +1,33 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import anime from "animejs";
-import { MapPin } from "lucide-react";
 import { assest } from "../assest/assest";
 import Image from "next/image";
 
 export default function PopularDestinations() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const destinations = [
+
+  const destinations= [
+    { name: "Delhi", image: assest.dehli },
+    { name: "Mumbai", image: assest.mumbai },
+    { name: "Nashik", image: assest.nashik },
+    { name: "Nagpur", image: assest.nagpur },
+    { name: "Pune", image: assest.pune },
+    { name: "Bhopal", image: assest.bhopal },
+    { name: "Ujjain", image: assest.ujjain },
+    { name: "Indore", image: assest.indore },
+    { name: "Jabalpur", image: assest.jabalpur },
+    { name: "Jaipur", image: assest.jaipur },
+    { name: "Udaipur", image: assest.udaipur },
+    { name: "Kota", image: assest.kota },
+    { name: "Jodhpur", image: assest.jodhpur },
     { name: "Vadodara", image: assest.vadodara },
     { name: "Surat", image: assest.surat },
-    { name: "Rajkot", image: assest.rajkot },
-    { name: "Dwarka", image: assest.dwarka },
-    { name: "Somnath", image: assest.somnath },
-    { name: "Unity", image: assest.unity },
-    { name: "Gir", image: assest.gir },
-    { name: "Kutch", image: assest.kuch },
-    { name: "Bhavnagar", image: assest.bhavnagar },
-    { name: "Gandhinagar", image: assest.gandhinagr },
+    { name: "Ahmedabad", image: assest.ahmedabad },
+    { name: "Rajkot", image: assest.rajkot }
   ];
+  
 
   useEffect(() => {
     if (containerRef.current) {

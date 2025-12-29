@@ -444,11 +444,11 @@ export default function Footer() {
                 </h4>
                 
                   <div className="space-y-2">
-                  <p className="text-gray-300 text-sm">Ahmedabad to Rajkot</p>
-                  <p className="text-gray-300 text-sm">Surat to Vadodara</p>
-                  <p className="text-gray-300 text-sm">Vadodara to Jamnagar</p>
-                  <p className="text-gray-300 text-sm">Rajkot to Bhavnagar</p>
-                  <p className="text-gray-300 text-sm">Bhavnagar to Surat</p>
+                  <p className="text-gray-300 text-sm">Ahmedabad to Mumbai</p>
+                  <p className="text-gray-300 text-sm">Delhi to Jaipur</p>
+                  <p className="text-gray-300 text-sm">Mumbai to Pune</p>
+                  <p className="text-gray-300 text-sm">Indore to Bhopal</p>
+                  <p className="text-gray-300 text-sm">Udaipur to Jodhpur</p>
                   </div>
                 
                 <div className="pt-3">
@@ -470,10 +470,10 @@ export default function Footer() {
                 </h4>
                 <div className="space-y-2">
                   <p className="text-gray-300 text-sm">Ahmedabad</p>
-                  <p className="text-gray-300 text-sm">Surat</p>
-                  <p className="text-gray-300 text-sm">Vadodara</p>
-                  <p className="text-gray-300 text-sm">Rajkot</p>
-                  <p className="text-gray-300 text-sm">Bhavnagar</p>
+                  <p className="text-gray-300 text-sm">Delhi</p>
+                  <p className="text-gray-300 text-sm">Jaipur</p>
+                  <p className="text-gray-300 text-sm">Mumbai</p>
+                  <p className="text-gray-300 text-sm">Indore</p>
                 </div>
                 <div className="pt-3">
                   <Link
@@ -493,11 +493,11 @@ export default function Footer() {
                   Airports Pick Up & Drop
                 </h4>
                 <div className="space-y-2">
-                  <p className="text-gray-300 text-sm">Ahmedabad to Surat</p>
-                  <p className="text-gray-300 text-sm">Surat to Vadodara</p>
-                  <p className="text-gray-300 text-sm">Vadodara to Ahmedabad</p>
-                  <p className="text-gray-300 text-sm">Rajkot to Bhavnagar</p>
-                  <p className="text-gray-300 text-sm">Bhuj to Gandhidham</p>
+                  <p className="text-gray-300 text-sm">Ahmedabad to Delhi</p>
+                  <p className="text-gray-300 text-sm">Mumbai to Jaipur</p>
+                  <p className="text-gray-300 text-sm">Delhi to Indore</p>
+                  <p className="text-gray-300 text-sm">Ahmedabad to Mumbai</p>
+                  <p className="text-gray-300 text-sm">Jaipur to Delhi</p>
                 </div>
                 <div className="pt-3">
                   <Link

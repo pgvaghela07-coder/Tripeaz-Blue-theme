@@ -61,7 +61,7 @@ export default function PopularDestinations() {
                 <Image
                   src={destination.image || ""}
                   alt={destination.name}
-                  className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover"
+                  className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-2 border-white"
                   width={96}
                   height={96}
                 />

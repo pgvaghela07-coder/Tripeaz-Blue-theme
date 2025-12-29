@@ -120,9 +120,9 @@ export default function Navigation() {
     //   </div>
     // </nav>
 
-    <div className="flex mt-5 items-center justify-center py-3 bg-gradient-to-br  from-blue-50  to-blue-50">
+    <div className="flex  items-center justify-center pt-3 bg-gradient-to-br  from-blue-50  to-blue-50">
       <div>
-        <Image src={assest.logo} alt="" className="w-96 h-24 object-cover" />
+        <Image src={assest.logo} alt="" className="w-96 h-40 object-cover" />
       </div>
         {/* <p className="text-xl text-[#3579F3] font-semibold -mt-3" style={{ fontFamily: "serif" }}>
           Travel Made Easy

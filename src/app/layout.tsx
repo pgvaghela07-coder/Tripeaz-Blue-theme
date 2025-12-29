@@ -17,7 +17,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Tripeaz - Khushboo Gujarat Ki | Book Your Ride",
+  title: "Tripeaz - Travel Made Easy",
   description:
     "Reliable, affordable & comfortable taxi services across Gujarat. One-way, round trip, and airport rides with experienced drivers.",
   keywords:

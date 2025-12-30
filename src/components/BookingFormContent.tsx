@@ -255,7 +255,7 @@ export default function BookingFormContent({ onSuccess, showHeader = true }: Boo
   }
 
   return (
-    <div className="p-2 md:p-6 border-2  md:pt-0 lg:px-28 pb-14 max-md:px-4 bg-gradient-to-br from-blue-50 to-blue-50">
+    <div className="p-2 md:p-6 -mt-7  md:pt-0 lg:px-28 pb-14 max-md:px-4 bg-gradient-to-br from-blue-50 to-blue-50">
 
       <form onSubmit={handleSubmit} className="px-3 py-4 rounded-3xl shadow-xl border-4 border-transparent border-l-blue-600 bg-white">
         <div className="grid grid-cols-1 gap-6 md:gap-8">

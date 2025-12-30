@@ -120,7 +120,7 @@ export default function Navigation() {
     //   </div>
     // </nav>
 
-    <div className="flex  items-center justify-center pt-3 bg-gradient-to-br  from-blue-50  to-blue-50">
+    <div className="flex  items-center justify-center -mt-2 bg-gradient-to-br  from-blue-50  to-blue-50">
       <div>
         <Image src={assest.logo} alt="" className="w-96 h-40 object-cover" />
       </div>

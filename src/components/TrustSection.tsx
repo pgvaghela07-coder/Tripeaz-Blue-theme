@@ -6,25 +6,114 @@ import { useBookingModal } from "@/contexts/BookingModalContext";
 
 export default function TrustSection() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const desktopScrollRef = useRef<HTMLDivElement>(null);
     const { openModal } = useBookingModal();
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
     const [currentBenefit, setCurrentBenefit] = useState(0);
+    const [desktopScrollIndex, setDesktopScrollIndex] = useState(0);
 
     const testimonials = [
         {
             stars: "⭐⭐⭐⭐⭐",
             text: "Excellent service! The driver was punctual and the car was very clean. Highly recommended!",
             author: "Rajesh P.",
+            city: "Delhi",
         },
         {
             stars: "⭐⭐⭐⭐⭐",
-            text: "Great experience from Ahmedabad to Surat. Professional driver and reasonable pricing.",
+            text: "Great experience! Professional driver and reasonable pricing. Will definitely use again.",
             author: "Priya M.",
+            city: "Mumbai",
         },
         {
             stars: "⭐⭐⭐⭐⭐",
             text: "24/7 availability is a game changer. Booked late night and got instant confirmation.",
             author: "Amit S.",
+            city: "Nashik",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Smooth ride from start to finish. The driver was courteous and the vehicle was spotless.",
+            author: "Kavita R.",
+            city: "Nagpur",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Best taxi service in the region! On-time pickup and drop-off. Very satisfied with the service.",
+            author: "Rohit K.",
+            city: "Pune",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Affordable rates and excellent service. The driver knew all the shortcuts, saved us time!",
+            author: "Meera D.",
+            city: "Bhopal",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Comfortable journey with a very professional driver. Highly recommend Tripeaz!",
+            author: "Vikram J.",
+            city: "Ujjain",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Great experience! Clean car, safe driving, and excellent customer service throughout.",
+            author: "Anjali T.",
+            city: "Indore",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Reliable service with transparent pricing. No hidden charges. Very happy with the booking!",
+            author: "Suresh M.",
+            city: "Jabalpur",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Amazing service! The driver was well-mannered and the car was in perfect condition.",
+            author: "Neha G.",
+            city: "Jaipur",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Quick booking process and excellent ride quality. Will book again for sure!",
+            author: "Arjun P.",
+            city: "Udaipur",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Professional service with great attention to safety. Felt very secure during the journey.",
+            author: "Divya S.",
+            city: "Kota",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Outstanding experience! The driver was knowledgeable about routes and very helpful.",
+            author: "Ravi K.",
+            city: "Jodhpur",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Best taxi service! Clean vehicle, polite driver, and on-time service. Highly recommended!",
+            author: "Pooja N.",
+            city: "Vadodara",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Great experience from Ahmedabad to Surat. Professional driver and reasonable pricing.",
+            author: "Manish D.",
+            city: "Surat",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Excellent service with great customer support. The booking was hassle-free and smooth.",
+            author: "Kiran L.",
+            city: "Ahmedabad",
+        },
+        {
+            stars: "⭐⭐⭐⭐⭐",
+            text: "Very satisfied with the service! Comfortable ride and excellent value for money.",
+            author: "Harsh B.",
+            city: "Rajkot",
         },
     ];
 
@@ -61,6 +150,48 @@ export default function TrustSection() {
             clearInterval(benefitInterval);
         };
     }, [testimonials.length, benefits.length]);
+
+    // Auto-scroll desktop testimonials
+    useEffect(() => {
+        const desktopScrollInterval = setInterval(() => {
+            if (desktopScrollRef.current) {
+                const container = desktopScrollRef.current;
+                const containerWidth = container.clientWidth;
+                const gap = 24; // gap-6 = 24px
+                // Calculate card width: (container width - 2 gaps) / 3
+                const cardWidth = (containerWidth - (2 * gap)) / 3;
+                const scrollAmount = cardWidth + gap;
+                const maxScroll = container.scrollWidth - container.clientWidth;
+                const currentScroll = container.scrollLeft;
+                
+                // Calculate next scroll position - scroll by exactly one card
+                let nextScroll = currentScroll + scrollAmount;
+                
+                // If we've reached or passed the end, loop back to start
+                if (nextScroll >= maxScroll - 5) {
+                    // Smooth scroll back to start
+                    setTimeout(() => {
+                        container.scrollTo({
+                            left: 0,
+                            behavior: 'auto'
+                        });
+                    }, 500);
+                    setDesktopScrollIndex(0);
+                } else {
+                    // Scroll to next position
+                    container.scrollTo({
+                        left: nextScroll,
+                        behavior: 'smooth'
+                    });
+                    setDesktopScrollIndex((prev) => (prev + 1) % testimonials.length);
+                }
+            }
+        }, 4000);
+
+        return () => {
+            clearInterval(desktopScrollInterval);
+        };
+    }, [testimonials.length]);
 
 
     return (
@@ -120,7 +251,7 @@ export default function TrustSection() {
                                                 "{testimonial.text}"
                                             </p>
                                             <div className="text-blue-200 text-sm font-medium">
-                                                - {testimonial.author}
+                                                - {testimonial.author} - {testimonial.city}
                                             </div>
                                         </div>
                                     </div>
@@ -145,22 +276,34 @@ export default function TrustSection() {
                         </div>
                     </div>
 
-                    {/* Desktop Grid */}
-                    <div className="hidden md:grid md:grid-cols-3 gap-6 mb-8">
-                        {testimonials.map((testimonial, index) => (
-                            <div
-                                key={index}
-                                className="bg-white/10 backdrop-blur-sm rounded-xl p-6"
+                    {/* Desktop Scrollable */}
+                    <div className="hidden md:block mb-8">
+                        <div className="relative overflow-hidden rounded-xl">
+                            <div 
+                                ref={desktopScrollRef}
+                                className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-2"
                             >
-                                <div className="text-2xl mb-2">{testimonial.stars}</div>
-                                <p className="text-blue-100 text-sm mb-3">
-                                    "{testimonial.text}"
-                                </p>
-                                <div className="text-blue-200 text-sm font-medium">
-                                    - {testimonial.author}
-                                </div>
+                                {testimonials.map((testimonial, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex-shrink-0"
+                                        style={{ 
+                                            width: 'calc((100% - 48px) / 3)',
+                                            minWidth: 'calc((100% - 48px) / 3)',
+                                            maxWidth: 'calc((100% - 48px) / 3)'
+                                        }}
+                                    >
+                                        <div className="text-2xl mb-2">{testimonial.stars}</div>
+                                        <p className="text-blue-100 text-sm mb-3">
+                                            "{testimonial.text}"
+                                        </p>
+                                        <div className="text-blue-200 text-sm font-medium">
+                                            - {testimonial.author} - {testimonial.city}
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        </div>
                     </div>
 
                     {/* CTA */}

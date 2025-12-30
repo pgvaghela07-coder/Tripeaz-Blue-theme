@@ -7,6 +7,13 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ChevronDown, ChevronUp } from "lucide-react";
 
+// Reserved routes that should not be handled by this catch-all
+const RESERVED_ROUTES = [
+  'admin', 'admin-login', 'api', 'blog', 'blogs', 'routes', 'cities', 
+  'airports', 'airport', 'city', 'route', 'cancellation-policy', 
+  'privacy-policy', 'refund-policy', 'terms-of-service'
+];
+
 export default function SlugPage() {
   const params = useParams();
   const router = useRouter();
@@ -15,15 +22,29 @@ export default function SlugPage() {
   const [contentType, setContentType] = useState(null); // 'route', 'city', 'airport', or 'blog'
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [notFound, setNotFound] = useState(false);
   const [openFAQIndex, setOpenFAQIndex] = useState(null);
   const contentRef = useRef(null);
 
   useEffect(() => {
     const fetchContent = async () => {
-      if (!slug) return;
+      if (!slug) {
+        setNotFound(true);
+        setLoading(false);
+        return;
+      }
+
+      // Check if slug is a reserved route
+      if (RESERVED_ROUTES.includes(slug.toLowerCase())) {
+        setNotFound(true);
+        setLoading(false);
+        return;
+      }
 
       try {
         setLoading(true);
+        setError(null);
+        setNotFound(false);
         
         // First, try to find in routes
         try {
@@ -81,10 +102,12 @@ export default function SlugPage() {
         }
         
         // Not found anywhere
-        setError("Content not found");
+        setNotFound(true);
+        setError("Page not found");
         setLoading(false);
       } catch (err) {
         console.error("Error fetching content:", err);
+        setNotFound(true);
         setError("Failed to load content");
         setLoading(false);
       }
@@ -170,36 +193,72 @@ export default function SlugPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
-        <Header_Components />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-600 mb-4"></div>
             <p className="text-gray-600 font-medium text-lg">Loading...</p>
           </div>
         </div>
-        <Footer_Components />
       </div>
     );
   }
 
-  if (error || !content) {
+  if (notFound || (error && !loading)) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
-        <Header_Components />
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Content Not Found</h1>
-            <p className="text-gray-600 mb-6">{error || "The content you're looking for doesn't exist."}</p>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl font-semibold transition-all shadow-md hover:shadow-lg transform hover:scale-105"
-            >
-              <ArrowLeft size={18} />
-              Back to Home
-            </Link>
+            <div className="mb-8">
+              <h1 className="text-9xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent mb-4">
+                404
+              </h1>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Page Not Found
+              </h2>
+              <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">
+                The page you're looking for doesn't exist or has been moved.
+              </p>
+            </div>
           </div>
         </div>
-        <Footer_Components />
+      </div>
+    );
+  }
+
+  if (!content && !loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center">
+            <div className="mb-8">
+              <h1 className="text-9xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent mb-4">
+                404
+              </h1>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Page Not Found
+              </h2>
+              <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">
+                The page you're looking for doesn't exist or has been moved.
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl font-semibold transition-all shadow-md hover:shadow-lg transform hover:scale-105"
+              >
+                <ArrowLeft size={18} />
+                Back to Home
+              </Link>
+              <Link
+                href="/routes"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-blue-50 text-blue-600 border-2 border-blue-600 rounded-xl font-semibold transition-all shadow-md hover:shadow-lg transform hover:scale-105"
+              >
+                Browse Routes
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

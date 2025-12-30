@@ -354,7 +354,7 @@ export default function Footer() {
                 <div className="">
                   <h1 className="leading-7 text-xl font-semibold text-[#98561f]" style={{ fontFamily: "serif" }}>Tripeaz</h1>
                   <p className="text-md text-[#98561f] font-semibold " style={{ fontFamily: "serif" }}>
-                    Khushboo Gujarat Ki
+                    Travel Made Easy
                   </p>
                 </div>
               </div> */}
@@ -542,7 +542,7 @@ export default function Footer() {
             {/* Copyright */}
             <div className="text-center md:text-left">
               <p className="text-gray-400">
-                © 2025 Tripeaz – Khushboo Gujarat Ki
+                © 2025 Tripeaz – Travel Made Easy
               </p>
               <p className="text-gray-500 text-sm mt-1">
                 Website is owned & managed by{" "}

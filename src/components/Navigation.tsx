@@ -43,7 +43,7 @@ export default function Navigation() {
     //         <div>
     //           <h1 className="text-xl font-bold text-gray-900">Tripeaz</h1>
     //           <p className="text-xs text-blue-600 font-medium">
-    //             Khushboo Gujarat Ki
+    //             Travel Made Easy
     //           </p>
     //         </div>
     //       </div>

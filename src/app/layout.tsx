@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "color-scheme": "light",
   },
   openGraph: {
-    title: "Tripeaz - Khushboo Gujarat Ki",
+    title: "Tripeaz - Travel Made Easy",
     description:
       "Book your ride with Tripeaz - Reliable, Affordable & Comfortable",
     type: "website",

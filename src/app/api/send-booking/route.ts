@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
           <div class="container">
             <div class="header">
               <h1>🚖 New Booking - Tripeaz</h1>
-              <p>Khushboo Gujarat Ki</p>
+              <p>Travel Made Easy</p>
             </div>
 
             <div class="content">

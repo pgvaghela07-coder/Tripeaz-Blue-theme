@@ -1,4 +1,4 @@
-# Tripeaz - Khushboo Gujarat Ki
+# Tripeaz - Travel Made Easy
 
 A modern, responsive taxi booking website built with Next.js, Tailwind CSS, and Anime.js for Tripeaz services.
 
@@ -197,7 +197,7 @@ For support or questions:
 
 - Email: info@gujarat.taxi
 - Phone: +91 9512870958 
-- Website: Tripeaz - Khushboo Gujarat Ki
+- Website: Tripeaz - Travel Made Easy
 
 ## License
 
